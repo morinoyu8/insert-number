@@ -21,7 +21,7 @@ int main(void) {
 ```
 
 ```
-inu hello-world.c
+./inu hello-world.c
 ```
 
 hello-world-linenum.txt
@@ -55,7 +55,7 @@ hello-world.txt
 ```
 
 ```
-inu -rem hello-world.txt
+./inu -rem hello-world.txt
 ```
 
 hello-world-remnum.c
@@ -83,7 +83,7 @@ int main(void) {
 ```
 
 ```
-inu -space 5 hello-world.c
+./inu -space 5 hello-world.c
 ```
 
 hello-world-linenum.txt

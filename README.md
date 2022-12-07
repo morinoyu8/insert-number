@@ -70,7 +70,7 @@ int main(void) {
 
 - `-space int`
 
-行数までのスペース数を指定できます. 1までのスペース数です. (default: 2)
+行数までのスペース数を指定できます. 1までのスペース数です. (default: 1)
 
 hello-world.c
 ```c

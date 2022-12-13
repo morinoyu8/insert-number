@@ -98,7 +98,9 @@ void insert_linenum(char **argv, int first, int len, int space) {
         while (fgets(str, SIZE, rf) != NULL) {
             if (count == bound) {
                 bound *= 10;
-                space_str[strlen(space_str) - 1] = '\0';
+                if (strlen(space_str) > 0) {
+                    space_str[strlen(space_str) - 1] = '\0';
+                }
             }
             fprintf(wf, "%s%d  %s", space_str, count, str);
             count++;

@@ -4,6 +4,7 @@
 
 #define SIZE 1000
 #define FILENAME_SIZE 100
+#define SPACE_MAX 10000
 
 void argment_error() {
     fprintf(stderr, "arguments are missing.\n");
@@ -129,6 +130,10 @@ int main(int argc, char **argv) {
         if (argc < 4)
             argment_error();
         space = atoi(argv[2]);
+        if (space < 0 || SPACE_MAX < space) {
+            fprintf(stderr, "\'space\' must be between 0 to %d\n", SPACE_MAX);
+            exit(1);
+        }
         first = 3;
     }
 

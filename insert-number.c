@@ -14,12 +14,13 @@ void argment_error() {
 char *new_filename(const char *name, int rem) {
     char *new = malloc(FILENAME_SIZE * sizeof(char));
     strcpy(new, name);
+    int ext_idx = strlen(new);
     for (int i = 0; i < strlen(new); i++) {
         if (new[i] == '.') {
-            new[i] = '\0';
-            break;
+            ext_idx = i;
         }
     }
+    new[ext_idx] = '\0';
     if (rem == 0)
         strcat(new, "-linenum.txt");
     else

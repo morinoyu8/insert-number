@@ -27,7 +27,7 @@ int main(void) {
 hello-world-linenum.txt
 ```
  1  #include <stdio.h>
- 2  
+ 2
  3  int main(void) {
  4      printf("Hello World!\n");
  5      return 0;
@@ -36,7 +36,7 @@ hello-world-linenum.txt
 
 ## オプション
 
-- `-rem`
+- `-r`, `--remove`
 
 行数のあるプログラムの行数を削除します.
 
@@ -47,7 +47,7 @@ hello-world-linenum.txt
 hello-world.txt
 ```
  1  #include <stdio.h>
- 2  
+ 2
  3  int main(void) {
  4      printf("Hello World!\n");
  5      return 0;
@@ -55,7 +55,7 @@ hello-world.txt
 ```
 
 ```
-./inu -rem hello-world.txt
+./inu -r hello-world.txt
 ```
 
 hello-world-remnum.c
@@ -68,7 +68,7 @@ int main(void) {
 }
 ```
 
-- `-space int`
+- `-s int`, `--space int`
 
 行数までのスペース数を指定できます. 1までのスペース数です. (default: 1)
 
@@ -83,13 +83,13 @@ int main(void) {
 ```
 
 ```
-./inu -space 5 hello-world.c
+./inu -s 5 hello-world.c
 ```
 
 hello-world-linenum.txt
 ```
      1  #include <stdio.h>
-     2  
+     2
      3  int main(void) {
      4      printf("Hello World!\n");
      5      return 0;

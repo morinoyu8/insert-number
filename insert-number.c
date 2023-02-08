@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <getopt.h>
 
 #define SIZE 1000
 #define FILENAME_SIZE 100
@@ -52,7 +53,7 @@ void remove_linenum(char **argv, int first, int len) {
     int rem_len = 4;
     for (int i = first; i < len; i++) {
         rf = xfopen(argv[i], "r");
-    
+
         char *new_file = new_filename(argv[i], 1);
         wf = xfopen(new_file, "w");
         free(new_file);
@@ -114,29 +115,40 @@ void insert_linenum(char **argv, int first, int len, int space) {
 }
 
 int main(int argc, char **argv) {
-    if (argc < 2)
-        argment_error();
-
     int rem = 0;
     int space = 1;
     int first = 1;
-    if (strcmp(argv[1], "-rem") == 0) {
-        if (argc < 3)
-            argment_error();
-        rem = 1;
-        first = 2;
-    }
 
-    if (strcmp(argv[1], "-space") == 0) {
-        if (argc < 4)
-            argment_error();
-        space = atoi(argv[2]);
-        if (space < 0 || SPACE_MAX < space) {
-            fprintf(stderr, "\'space\' must be between 0 to %d\n", SPACE_MAX);
-            exit(1);
+    struct option const long_opts[] = {
+        {"remove", no_argument, NULL, 'r'},
+        {"space", required_argument, NULL, 's'},
+        {0, 0, 0, 0},
+    };
+
+    while (1) {
+        int const opt = getopt_long(argc, argv, "rs:", long_opts, NULL);
+        if (opt == -1) break;
+
+        switch (opt) {
+            case 'r':
+                rem = 1;
+                break;
+            case 's':
+                space = atoi(optarg);
+                if (space < 0 || SPACE_MAX < space) {
+                    fprintf(stderr, "'space' must be between 0 to %d\n", SPACE_MAX);
+                    exit(1);
+                }
+                break;
+            case '?':
+                break;
+            default:
+                argment_error();
+                break;
         }
-        first = 3;
     }
+    if (optind >= argc) argment_error();
+    first = optind;
 
     if (rem)
         remove_linenum(argv, first, argc);
